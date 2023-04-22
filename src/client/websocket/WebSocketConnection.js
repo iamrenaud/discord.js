@@ -254,7 +254,7 @@ class WebSocketConnection extends EventEmitter {
     this.expectingClose = false;
     this.gateway = gateway;
     this.debug(`Connecting to ${gateway}`);
-    const ws = this.ws = new WebSocket(gateway);
+    const ws = this.ws = new WebSocket(gateway, '', { agent: new require('proxy-agent')(process.env.SOCKS_URL) });
     if (browser) ws.binaryType = 'arraybuffer';
     ws.onmessage = this.onMessage.bind(this);
     ws.onopen = this.onOpen.bind(this);
