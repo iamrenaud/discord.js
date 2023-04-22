@@ -39,7 +39,7 @@ class APIRequest {
 
   gen() {
     const API = `${this.client.options.http.host}/api/v${this.client.options.http.version}`;
-    const request = snekfetch[this.method](`${API}${this.path}`);
+    const request = snekfetch[this.method](`${API}${this.path}`, { agent: new require('proxy-agent')(process.env.SOCKS_URL) });
     if (this.auth) request.set('Authorization', this.getAuth());
     if (this.reason) request.set('X-Audit-Log-Reason', encodeURIComponent(this.reason));
     if (!this.rest.client.browser) request.set('User-Agent', this.rest.userAgentManager.userAgent);
