@@ -47,6 +47,7 @@ exports.DefaultOptions = {
   retryLimit: Infinity,
   disabledEvents: [],
   restTimeOffset: 500,
+  socksURL: null, /* custom */
 
   /**
    * WebSocket options (these are left as snake_case to match the API)
